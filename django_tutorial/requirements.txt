@@ -1,0 +1,53 @@
+appdirs==1.4.3
+asgiref==3.2.7
+autopep8==1.5.1
+distlib==0.3.0
+dj-database-url==0.5.0
+Django==3.0.5
+entrypoints==0.3
+filelock==3.0.12
+flake8==3.7.9
+mccabe==0.6.1
+pycodestyle==2.5.0
+pyflakes==2.1.1
+pytz==2019.3
+six==1.14.0
+sql==0.4.0
+sqlparse==0.3.1
+virtualenv==20.0.17
+
+
+
+
+
+
+date_hierarchy = "date_joined"
+    list_display = (
+        'email',
+        'name',
+        'verified',
+        'is_active',
+        'is_removed',
+    )
+    search_fields = ["email", "name"]
+    readonly_fields = ("date_joined", "modified")
+    fieldsets = (
+                    BASE_FIELDS,
+                         SIMPLE_PERMISSION_FIELDS,
+        ("Contact information", {
+            "fields": (
+                ("email", "name"),
+            )
+        }),
+        ("Account information", {
+            "fields": (
+                "is_removed",
+            ),
+        }),
+        ("Dates", {
+            "fields": (
+                ("date_joined", "modified",),
+            ),
+        })
+    )
+    list_filter = ('is_active', 'is_removed',)
